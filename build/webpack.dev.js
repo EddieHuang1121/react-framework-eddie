@@ -50,7 +50,7 @@ var webpackConfig = {
             if (isMock) {
                 apiMocker(app, path.join(__dirname, '../mock/mock.config.js'), {
                     proxy: {
-                        '/api/*': 'http://www.daoyu8.com/',
+                        '/api/*': 'http://huanghuahua6896.cn/',
                     },
                     changeHost: true,
                 })
@@ -60,7 +60,7 @@ var webpackConfig = {
         // proxy: {
         //     '/api': {
         //         target: 'http://180.97.232.18',
-        //         headers:{ "Host": "user.sdo.com" },
+        //         headers:{ "Host": "huanghuahua6896.cn" },
         //         secure: false,
         //         changeOrigin: true
         //     }
