@@ -1,0 +1,14 @@
+@import 'assets/scss/variable.scss';
+.home{
+    color: $bg_grey;
+}
+span{
+    @extend .txt11_grey_18;
+}
+
+.img {
+    background: url('~assets/images/test.png') no-repeat center;
+    width: 500px;
+    height: 500px;
+    display: block;
+}
