@@ -18,6 +18,8 @@ var webpackConfig = {
       'routes': path.join(__dirname, '/../src/routes'),
       'views': path.join(__dirname, '/../src/views'),
       "utils": path.join(__dirname, '/../src/utils'),
+      "actions": path.join(__dirname, '/../src/actions'),
+      "reducers": path.join(__dirname, '/../src/reducers'),
     },
     modules: [path.join(__dirname, '../node_modules')]
   },
