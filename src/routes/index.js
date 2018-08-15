@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-const IndexView = (location, cb) => {
+const TestView = (location, cb) => {
   require.ensure([], require => {
     cb(null, require('views/index').default);
-  }, 'index');
+  }, 'test');
 };
 
 const Todo = (location, cb) => {
@@ -21,7 +21,7 @@ const Counter = (location, cb) => {
 
 const routes =  (
 	<Route path="/">
-        <IndexRoute getComponent={ IndexView }/>
+        <IndexRoute getComponent={ TestView }/>
         <Route path="todo" getComponent={ Todo }/>
         <Route path="counter" getComponent={ Counter }/>
     </Route>

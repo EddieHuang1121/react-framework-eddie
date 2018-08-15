@@ -21,18 +21,20 @@ module.exports = webpackMerge(webpackBaseConfig, {
 
     devtool: 'source-map',
 
+    mode: 'production',
+
     plugins: [
 
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
         }),
 
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                drop_console: true
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false,
+        //         drop_console: true
+        //     }
+        // }),
 
         new webpack.optimize.ModuleConcatenationPlugin(),
 

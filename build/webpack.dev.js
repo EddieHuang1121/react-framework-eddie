@@ -15,6 +15,7 @@ process.on('uncaughtException', function(exception) {
 
 module.exports = webpackMerge(webpackBaseConfig, {
     devtool: 'eval-source-map',
+    mode: 'development',
     output: {
         path: config.assetsRoot,
         publicPath: config.assetsPublicPath,

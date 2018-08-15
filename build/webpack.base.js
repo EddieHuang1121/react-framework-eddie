@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var utils = require('./utils')
 var config = require('../config')
 
@@ -52,25 +52,30 @@ var webpackConfig = {
         }
       }]
     }, {
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader?minimize']
-      })
-    }, {
-      test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader?minimize', 'sass-loader?minimize']
-      })
+      test: /\.(sa|sc|c)ss$/,
+      use: [
+        process.env.NODE_ENV == 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+        'css-loader?minimize',
+        'sass-loader?minimize'
+      ]
     }]
   },
   plugins: [
 
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      minChunks: Infinity
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendors',
+    //   minChunks: Infinity
+    // }),
+
+    new webpack.optimize.SplitChunksPlugin({
+      cacheGroups: {
+          vendor: {
+              name: "vendors",
+              chunks: "vendors",
+              minChunks: Infinity
+          }
+      }
+  }),
 
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, '../static'),
@@ -78,9 +83,8 @@ var webpackConfig = {
       ignore: ['.*']
     }]),
 
-    new ExtractTextPlugin({
-      filename:'p/[name]/bundle-[chunkhash].min.css',
-      allChunks: true
+    new MiniCssExtractPlugin({
+      filename:'p/[name]/bundle-[chunkhash].min.css'
     }),
   ]
 }
